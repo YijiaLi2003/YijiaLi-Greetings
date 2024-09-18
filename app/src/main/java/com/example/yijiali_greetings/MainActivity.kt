@@ -73,16 +73,19 @@ fun GreetingScreen(modifier: Modifier = Modifier) {
 fun generateGreeting(name: String): String {
     val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
     val timeOfDay = when (currentHour) {
+        in 0..5 -> "middle of the night"
         in 6..11 -> "morning"
         in 12..17 -> "afternoon"
-        else -> "evening"
+        in 18..21 -> "evening"
+        else -> "night"
     }
 
     return if (name.isNotBlank()) {
-        "Good $timeOfDay, $name!"
+        "Hello, $name!\nGood $timeOfDay!"
     } else {
         "Hello! Please enter your name."
     }
+
 }
 
 @Preview(showBackground = true)
